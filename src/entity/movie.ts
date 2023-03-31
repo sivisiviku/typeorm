@@ -14,7 +14,7 @@ export default class Movie extends BaseEntity {
     name: string
 
     @Column({type: 'int', nullable: true, width: 4})
-    releaseYear: number
+    release_year: number
 
     @Column({type: 'int', nullable: true})
     rating: number

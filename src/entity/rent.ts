@@ -2,10 +2,13 @@ import {
     Entity,
     PrimaryGeneratedColumn,
     Column,
-    ManyToOne
+    ManyToOne,
+    OneToOne,
+    JoinColumn
 } from "typeorm"
 import { BaseEntity } from './baseEntity'
 import Member from "./member"
+import Movie from "./movie"
 
 @Entity()
 export default class Rent extends BaseEntity {
@@ -15,12 +18,15 @@ export default class Rent extends BaseEntity {
     @Column()
     status: string
 
-    @Column()
+    @Column({nullable: true})
     date_rent: Date
 
-    @Column()
+    @Column({nullable: true})
     date_return: Date
 
     @ManyToOne(type => Member, member => member.rent)
     member: Member
+
+    @OneToOne(type => Movie) @JoinColumn()
+    movie: Movie
 }
