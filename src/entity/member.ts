@@ -3,7 +3,8 @@ import {
     PrimaryGeneratedColumn,
     Column,
     Generated,
-    OneToMany
+    OneToMany,
+    Index
 } from "typeorm"
 import { BaseEntity } from './baseEntity'
 import Rent from "./rent"
@@ -13,12 +14,15 @@ export default class Member extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: number
 
+    @Index()
     @Column()
     name: string
 
+    @Index()
     @Column()
     age: number
 
+    @Index()
     @Column()
     @Generated("uuid")
     referral_code: string

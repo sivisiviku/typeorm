@@ -1,6 +1,7 @@
 import * as Koa from "koa"
 import * as HttpStatus from "http-status-codes"
 import * as bodyParser from "koa-bodyparser"
+import * as serve from "koa-static"
 import router from "./router/index"
 import database from './config/database'
 
@@ -18,6 +19,8 @@ app.use(async (ctx: Koa.Context, next: () => Promise<any>) => {
 })
 app.use(router.routes())
 app.use(router.allowedMethods())
+app.use(serve('./uploads/webpages'))
+
 app.on('error', console.error)
 
 database.then(() => app.listen(3000, () => {
